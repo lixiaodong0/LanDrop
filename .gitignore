@@ -1,0 +1,6 @@
+uploads/
+__pycache__/
+.claude/
+*.spec
+dist/
+build/
