@@ -1,25 +1,25 @@
 # LanDrop
 
-Single-file, zero-dependency LAN file & text sharing. Just run and share.
+单文件、零依赖的局域网文件与文字传输工具。开箱即用，无需配置。
 
-## Features
+## 特性
 
-- **Zero setup** — Single Python file, no `pip install`, no config. Python 3.6+ is all you need.
-- **File transfer** — Upload, download, and manage files between any devices on the same LAN.
-- **Text sharing** — Send text snippets (links, notes, code) across devices in a chat-like interface.
-- **QR code** — Mobile devices scan the on-screen QR to join instantly (optional `qrcode` package).
-- **Image thumbnails** — Real image previews in file list, messages, and detail view.
-- **File filtering** — Filter by type: images, videos, audio, documents, APK.
-- **Multi-device** — Browser-based, works on Windows, macOS, Linux, iOS, Android.
-- **Drag & paste** — Drag files or paste from clipboard to upload.
+- **零配置** — 单个 Python 文件，无需 `pip install`，无需配置文件，Python 3.6+ 即可运行。
+- **文件互传** — 局域网内任意设备之间上传、下载、管理文件。
+- **文字传输** — 聊天式界面，跨设备发送链接、笔记、代码片段。
+- **二维码扫码** — 手机扫码即达（可选依赖 `qrcode`）。
+- **图片缩略图** — 文件列表、消息流、详情卡片均展示真实缩略图。
+- **文件筛选** — 按图片、视频、音频、文档、APK 分类过滤。
+- **全平台** — 浏览器访问，Windows、macOS、Linux、iOS、Android 通用。
+- **拖拽粘贴** — 拖拽文件或粘贴剪贴板内容即可上传。
 
-## Quick Start
+## 快速开始
 
 ```bash
 python file_transfer.py
 ```
 
-Open the printed URL (e.g. `http://192.168.1.5:8888`) on any device in the same LAN.
+在局域网其他设备浏览器打开终端打印的地址（如 `http://192.168.1.5:8888`）即可。
 
 ```
   ╔══════════════════════════════════════╗
@@ -33,37 +33,37 @@ Open the printed URL (e.g. `http://192.168.1.5:8888`) on any device in the same 
   ╚══════════════════════════════════════╝
 ```
 
-## Usage
+## 使用
 
 ```bash
-python file_transfer.py              # Default port 8888
-python file_transfer.py 9999         # Custom port
+python file_transfer.py              # 默认端口 8888
+python file_transfer.py 9999         # 指定端口
 ```
 
-Enable QR code support (optional):
+启用二维码（可选）：
 ```bash
 pip install qrcode
 ```
 
 ## API
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/files` | List all files |
-| POST | `/api/upload` | Upload file (multipart) |
-| GET | `/api/download/<name>` | Download file |
-| DELETE | `/api/delete/<name>` | Delete file |
-| GET | `/api/messages?since=N` | Poll messages |
-| POST | `/api/messages` | Send text message |
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/api/files` | 文件列表 |
+| POST | `/api/upload` | 上传文件（multipart） |
+| GET | `/api/download/<name>` | 下载文件 |
+| DELETE | `/api/delete/<name>` | 删除文件 |
+| GET | `/api/messages?since=N` | 增量轮询消息 |
+| POST | `/api/messages` | 发送文字消息 |
 
-## Design
+## 设计
 
-- Single `file_transfer.py`, zero third-party dependencies.
-- Messages stored in-memory only (max 200), lost on restart.
-- No authentication — designed for trusted LAN environments.
-- Frontend is vanilla JS, no frameworks or build tools.
-- File uploads go to `./uploads/`, same-name files are overwritten.
+- 单文件 `file_transfer.py`，零第三方依赖。
+- 消息仅存内存（最多 200 条），重启丢失。
+- 无身份验证，面向可信局域网环境。
+- 前端原生 JS，无框架、无构建工具。
+- 上传文件存于 `./uploads/`，同名覆盖。
 
-## License
+## 协议
 
 MIT
